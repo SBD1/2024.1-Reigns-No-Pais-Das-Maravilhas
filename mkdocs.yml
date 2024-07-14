@@ -1,0 +1,83 @@
+repo_url: https://github.com/SBD1/2024.1-Reigns-One-Piece
+repo_name: 2024.1-Reigns-One-Piece
+
+site_name: Reigns One Piece
+site_url: https://github.com/SBD1/2024.1-Reigns-One-Piece
+site_author: Kauan de Torres Eiras
+site_description: Site destinado à apresentação do projeto Reigns One Piece da disciplina de Sistema de Bancos de Dados 1 (SDB1) da turma de 2024.1 do curso de Engenharia de Software da Universidade de Brasília (UnB).
+
+nav: 
+  - Início: index.md
+  - Entrega 1: 
+    - Dicionário de Dados: entrega1/dicionario_de_dados.md
+    - Modelo Entidade-Relacionamento: entrega1/modelo_entidade_relacionamento.md
+    - Diagrama Entidade-Relacionamento: entrega1/diagrama_entidade_relacionamento.md
+    - Modelo Relacional: entrega1/modelo_relacional.md
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.footer
+    - content.tabs.link
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Mudar para o modo escuro
+      primary: teal
+      accent: teal
+
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para o modo claro
+      primary: teal
+      accent: teal
+  language: pt-BR
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  extra_css: [stylesheets/extra.css]
+  plugins:
+    - search
+    - include-markdown
+    - mkdocs-material-tabs
+
+markdown_extensions:
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+        
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+
+plugins:
+  - search
+  - include-markdown
