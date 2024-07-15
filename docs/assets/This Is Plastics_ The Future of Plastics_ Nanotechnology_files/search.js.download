@@ -1,0 +1,343 @@
+// JavaScript Document
+$(document).ready(function(){
+	
+	if($("#home_hero.search").length){
+		$("#home_search").addClass("active");
+	}
+	
+});
+
+
+function InitSearchBlur(){
+	//
+	var homesearchdivbg_vague = $('#home_search div.bg').Vague({
+		intensity:      10,      // Blur Intensity
+		forceSVGUrl:    false,   // Force absolute path to the SVG filter,
+		// default animation options
+		animationOptions: {
+		  duration: 1000,
+		  easing: 'linear' // here you can use also custom jQuery easing functions
+		}
+	});
+
+
+	homesearchdivbg_vague.blur();
+	
+	$( '#home_search' ).mouseover(function() {
+		$("#home_search").addClass("active");
+		
+	});
+	$( '#home_search' ).mouseout(function() {
+		SearchVal = $("#home_search input").val();
+		if(SearchVal.length>0){
+			$('#home_search').addClass("active");
+		}else{
+			$('#home_search').removeClass("active");
+		}
+	});
+	
+	
+}
+
+TypeTimeout = 350;
+TypeMinimumChars = 3;
+//
+function InitHomeSearchSuggestions(){
+	 
+	// callback: The callback function
+	// wait: The number of milliseconds to wait after the the last key press before firing the callback
+	// highlight: Highlights the element when it receives focus
+	// allowSubmit: Allows a non-multiline element to be submitted (enter key) regardless of captureLength
+	// captureLength: Minimum # of characters necessary to fire the callback
+
+	var HomeWatchOptions = {
+		callback: function () { GetSearchSuggestions( $(this).val(), "home") ; },
+		wait: TypeTimeout,
+		highlight: false,
+		allowSubmit: false,
+		captureLength: TypeMinimumChars
+	};
+	$("#home_hero:not(.search) #home_content #home_search input").typeWatch( HomeWatchOptions );
+
+	var HomeSearchWatchOptions = {
+		callback: function () { GetSearchSuggestions( $(this).val(), "search") ; },
+		wait: TypeTimeout,
+		highlight: false,
+		allowSubmit: false,
+		captureLength: TypeMinimumChars
+	};
+	$("#home_hero.search #home_content #home_search input").typeWatch( HomeSearchWatchOptions );
+	
+	
+	//keep the home search highlighted when hovering suggestions
+	$("#home_search_suggestions").mouseenter(function(){
+		$("#home_search").addClass("active");
+
+	});
+	$("#home_search_suggestions").mouseleave(function(){
+		//
+		SearchVal = $("#home_search input").val();
+		if(SearchVal.length>0){
+			$('#home_search').addClass("active");
+		}else{
+			$('#home_search').removeClass("active");
+		}
+	});
+	
+	
+	$("#home_hero #home_content #home_search input").keyup(function(){
+		HomeInputValue = $(this).val();
+		if(HomeInputValue.length>0){
+			//get search suggestions
+			//if($("#home_hero").hasClass("search")){
+			//	GetSearchSuggestions(HomeInputValue, "search");
+			//}else{
+			//	GetSearchSuggestions(HomeInputValue, "home");
+			//}
+			
+		}else{
+			//clear search suggestions
+			//console.log( "clear suggestions" );
+			$("#home_search_suggestions").empty();
+		}
+	});
+	
+	$("#home_hero #home_content #home_search input").mouseleave(function(){
+		SearchVal = $(this).val();
+		if(SearchVal.length>0){
+		}else{
+			$("#home_search_suggestions").empty();
+		}
+	});
+	
+		
+	
+	//
+}
+
+
+
+//
+function InitSearchSuggestions(){
+	
+	//Menu nav
+	$("#nav_search_input").keyup(function(){
+		SearchInputValue = $(this).val();
+		
+		//alert(SearchInputValue);
+		if(SearchInputValue.length>0){
+			//get search suggestions
+			GetSearchSuggestions(SearchInputValue, "nav");
+			$("#nav_search_btn").addClass("active");
+		}else{
+			//clear search suggestions
+			//console.log( "clear suggestions" );
+			$("#nav_search_suggestions").empty();
+			$("#nav_search_btn").removeClass("active");
+		}
+
+	
+	});
+	
+	var NavSearchWatchOptions = {
+		callback: function () { GetSearchSuggestions( $(this).val(), "nav") ; },
+		wait: TypeTimeout,
+		highlight: false,
+		allowSubmit: false,
+		captureLength: TypeMinimumChars
+	};
+	$("#nav_search_input").typeWatch( NavSearchWatchOptions );
+	
+	
+	$("#nav_search_input").mouseleave(function(){
+		SearchVal = $(this).val();
+		if(SearchVal.length>0){
+			$("#nav_search_suggestions").addClass("show");
+		}else{
+			$("#nav_search_suggestions").removeClass("show");
+			$("#nav_search_suggestions").empty();
+		}
+	});
+	
+	
+	//Questions
+	
+	$("#questions_search_input").keyup(function(){
+		QuestionsSearchInputValue = $(this).val();
+		
+		//alert(SearchInputValue);
+		if(QuestionsSearchInputValue.length>0){
+			//get search suggestions
+			GetSearchSuggestions(QuestionsSearchInputValue, "questions");
+			$("#questions_search_suggestions").addClass("show");
+			$("#questions_search_btn").addClass("active");
+		}else{
+			//clear search suggestions
+			//console.log( "clear suggestions" );
+			$("#questions_search_suggestions").empty();
+			$("#questions_search_btn").removeClass("active");
+		}
+
+	
+	});
+	
+	var QuestionsSearchWatchOptions = {
+		callback: function () { GetSearchSuggestions( $(this).val(), "questions") ; },
+		wait: TypeTimeout,
+		highlight: false,
+		allowSubmit: false,
+		captureLength: TypeMinimumChars
+	};
+	$("#questions_search_input").typeWatch( QuestionsSearchWatchOptions );
+	
+	
+	$("#questions_search_input").mouseleave(function(){
+		QuestionsSearchVal = $(this).val();
+		if(QuestionsSearchVal.length>0){
+			$("#questions_search_suggestions").addClass("show");
+		}else{
+			$("#questions_search_suggestions").removeClass("show");
+			$("#questions_search_suggestions").empty();
+		}
+	});
+	
+	
+	
+	//Mobile
+	$("#mobile_search_input").keyup(function(){
+		SearchInputValue = $(this).val();
+		
+		//alert(SearchInputValue);
+		if(SearchInputValue.length>0){
+			//get search suggestions
+			//GetSearchSuggestions(SearchInputValue, "mobile");
+		}else{
+			//clear search suggestions
+			//console.log( "clear suggestions" );
+			$("#mobile_search_input").empty();
+		}
+	});
+	
+	
+	var MobileSearchWatchOptions = {
+		callback: function () { GetSearchSuggestions( $(this).val(), "mobile") ; },
+		wait: TypeTimeout,
+		highlight: false,
+		allowSubmit: false,
+		captureLength: TypeMinimumChars
+	};
+	$("#mobile_search_input").typeWatch( MobileSearchWatchOptions );
+	
+	
+	$("#mobile_search_input").mouseleave(function(){
+		SearchVal = $(this).val();
+		if(SearchVal.length>0){
+		}else{
+			$("#mobile_search_suggestions").empty();
+		}
+	});
+	$("#mobile_search_input").focusin(function(){
+		$("#mobile_search_suggestions").css("display", "block")
+	});
+	$("#mobile_search_input").mouseleave(function(){
+		//$("#mobile_search_suggestions").css("display", "none")
+	});
+	//
+	
+	//NOT FIXED
+	//mobile search was disappearing on click and not going to the result
+	$("#mobile_search_suggestions li a").click(function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		URL = $(this).attr("href");
+		alert(URL);
+		window.open(URL, '_self');
+	});
+	//
+}
+
+
+//ajax loading of search suggestions
+function GetSearchSuggestions(PassedQuery, uiLocation){
+	
+	//
+	//if(ajaxInProgress===false){
+		CurrentSearchQuery = PassedQuery;
+		MaxSuggestions = 3;
+
+		if(CurrentSearchQuery.length>0){
+			
+			
+			if(uiLocation == "home"){
+				$("#home_search input").addClass("searching");	
+			}
+			if(uiLocation == "nav"){
+				$("#nav-search input").addClass("searching");	
+			}
+			if(uiLocation == "mobile"){
+				$("#mobile-search input").addClass("searching");	
+			}
+			if(uiLocation == "questions"){
+				$("#questions-search input").addClass("searching");	
+			}
+			
+			$.ajax({
+					type : 'POST',
+					url : MyAjax.ajaxurl,
+					//dataType : 'json',
+					data: {
+						action: 'GetSearchSuggestions',
+						CurrentSearchQuery: CurrentSearchQuery,
+						MaxSuggestions: MaxSuggestions,
+						uiLocation: uiLocation
+					},
+					success : function(results){
+						//
+						//console.log( results );
+						if(uiLocation == "home"){
+							$("#home_search_suggestions").empty();
+							$("#home_search_suggestions").html(results);
+							$("#home_search input").removeClass("searching");	
+						}else{
+							if(uiLocation == "nav"){
+								$("#nav_search_suggestions").empty();
+								$("#nav_search_suggestions").html(results);
+								$("#nav-search input").removeClass("searching");	
+							}else if(uiLocation == "questions"){
+								$("#questions_search_suggestions").empty();
+								$("#questions_search_suggestions").html(results);
+								$("#questions-search input").removeClass("searching");	
+							}else{
+								//mobile
+								$("#mobile_search_suggestions").empty();
+								$("#mobile_search_suggestions").html(results);
+								$("#mobile-search input").removeClass("searching");	
+							}
+						}
+						//var $content = $( results );
+						
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log("GetSearchSuggestions() AJAX error " + textStatus + " " + errorThrown);
+							$("#home_search input").removeClass("searching");	
+							$("#nav-search input").removeClass("searching");	
+							$("#mobile-search input").removeClass("searching");	
+							$("#questions-search input").removeClass("searching");	
+						
+					}
+				});
+
+		}else{
+			//blank query
+						if(uiLocation == "home"){
+							$("#home_search_suggestions").empty();
+						}else{
+							$("#nav_search_suggestions").empty();
+							$("#mobile_search_suggestions").empty();
+							$("#questions_search_suggestions").empty();
+						}
+		}
+		
+	//}	
+		//
+}

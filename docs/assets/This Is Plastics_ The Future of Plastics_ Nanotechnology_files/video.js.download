@@ -1,0 +1,108 @@
+// JavaScript Document
+var PostPlayerOffset;
+$(document).ready(function(){
+	
+	if($("#post_video_embed").length){
+	
+	PostPlayerOffset = $("#post_video_embed").offset();
+	
+	var videowaypoint = new Waypoint({
+	  element: document.getElementById('post-content'),
+	  handler: function(direction) {
+		  if(direction=="up"){
+			  console.log("up");
+			//scrolling back up the page, put video in hero
+			  MoveVideo("hero");
+		}else{
+			console.log("down");
+			//scrolling down, put the video in content
+			MoveVideo("content");
+		}
+	  },
+	  offset: PostPlayerOffset.top
+	});
+	//
+	//
+	
+		VideoEmbedSetHeight();
+	}
+});
+
+$(window).load(function(){
+	if($("#post_hero_video_embed").length){
+		VideoEmbedSetHeight();
+	}
+	
+});
+
+
+$(window).resize(function(){
+	if($("#post_hero_video_embed").length){
+		VideoEmbedSetHeight();
+		PostPlayerOffset = $("#post_video_embed").offset();
+	}
+	//
+});
+
+
+//
+function VideoEmbedSetHeight(){
+	Width = $("#article-hero .video-embed").width();
+	Height = Math.ceil(Width/1.777777777777778);  //16:9 aspect ratio
+	$("#article-hero .video-embed").css("height", (Height+"px"));
+	//
+	$("#article-hero .video-embed iframe").css("width", (Width+"px"));
+	$("#article-hero .video-embed iframe").css("height", (Height+"px"));
+	
+	Width = $(".site-content .content .video-embed").width();
+	Height = Math.ceil(Width/1.777777777777778);  //16:9 aspect ratio
+	$(".site-content .content .video-embed").css("height", (Height+"px"));
+	//
+	$(".site-content .content .video-embed iframe").css("width", (Width+"px"));
+	$(".site-content .content .video-embed iframe").css("height", (Height+"px"));
+	//
+}
+
+
+
+//move video
+CurrentVideoTime = 0;
+function MoveVideo(Location){
+	//
+	if(isMobile==false){
+		if(Location=="hero"){
+			//stop the bottom player when scrolling up
+			//then start the top player
+			//alert("back up");
+			CurrentVideoTime = PostPlayer.getCurrentTime();
+			if(PostPlayer.getPlayerState()==1){
+				PostPlayer.pauseVideo();
+				HeroPlayer.seekTo(CurrentVideoTime, true).playVideo();
+			}
+			if(PostPlayer.getPlayerState()==2){
+				HeroPlayer.seekTo(CurrentVideoTime, true).pauseVideo();
+			}
+
+			//
+		}else{
+			//content
+			//stop the top player
+			//start the bottom player
+			CurrentVideoTime = HeroPlayer.getCurrentTime();
+			if(HeroPlayer.getPlayerState()==1){
+				HeroPlayer.pauseVideo();
+				PostPlayer.seekTo(CurrentVideoTime, true).playVideo();
+			}
+			if(HeroPlayer.getPlayerState()==2){
+				PostPlayer.seekTo(CurrentVideoTime, true).pauseVideo();
+			}
+
+
+			//
+		}
+	}
+	//
+}
+
+
+

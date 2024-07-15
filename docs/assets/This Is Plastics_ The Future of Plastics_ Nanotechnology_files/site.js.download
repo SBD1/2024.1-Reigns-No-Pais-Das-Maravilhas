@@ -1,0 +1,534 @@
+// JavaScript Document
+
+$(document).ready(function(){
+	//
+	$(".fullwidth_bar .scroll-tab").click(function(){
+		ID = "#"+$(this).attr("ID");
+		//
+		ThisOffset = $(ID).offset().top-ScrollOffset; 
+		$('html, body').animate({
+			scrollTop: ThisOffset
+		}, 1000, 'easeInOutCubic');
+		
+		//
+	});
+	
+	//navigation search bar init
+	InitSearchSuggestions();
+	
+	//home_hero search blur
+	if ($("#home_search").length){
+		InitSearchBlur();
+		InitStickySearch();
+		InitHomeSearchSuggestions();
+	}else{
+		//due to css complexities, show or hide the search bg here
+		if($("#category-page.search").length){
+			
+		}else{
+			// $("#navbar").addClass("search");
+			// $("#navbar #nav-search").show();
+			// $("#navbar #nav-search-bg").show();
+		}
+	}
+	
+	//home topics list clicks
+	//legacy
+	if ($("#topics_list").length){
+		$("#topics_list li").click(function(){
+			URL = $(this).data('url');
+			window.open(URL, '_self');
+		});
+	}
+	//current
+	if ($("#home_categories").length){
+		$("#home_categories li").click(function(){
+			URL = $(this).data('url');
+			window.open(URL, '_self');
+		});
+	}
+	
+	
+	//post thumbnail clicks
+	if ($("li.post-thumb").length){
+		$("li.post-thumb").click(function(){
+			URL = $(this).data('url');
+			window.open(URL, '_self');
+		});
+	}
+	
+	CheckMobile();
+	CheckSearchPlaceholder();
+	
+	
+	if($("#article-hero.swap-mobile-bg").length){
+		SwapMobileBG();
+	}
+		if($("#home-articles.swap-mobile-bg").length){
+			SwapMobileBG();
+		}
+	 	 
+	ScrollRevealInit();
+	
+	
+	InitShareables();
+	
+	
+	
+	//add ga code to get involved link in nav
+	$("ul#menu-secondary li.get-involved a").click(function(){
+		ga('send', 'event', 'SecondaryNav', 'click', 'Get Involved');
+	});
+		
+	
+	//if resources accordion
+	if($("#resources-accordion").length){
+		
+		$("#resources-accordion").accordion({
+			heightStyle: "content",
+			collapsible: true
+		});
+		 
+	} 
+
+	//-Content area videos  Wrap youtube iframe videos
+	//$("#post-content iframe").wrap("<div class='video-iframe'></div>"); 
+	
+	//Clear interstial cookies on thank-you page
+	if(window.location.href.indexOf("thank-you") > -1){
+		Cookies.remove('inters_email');
+		Cookies.remove('inters_zip');   
+	}
+});
+
+//adds overlay-tint to callouts for mobile so text is easier to see 
+//(function($) {
+//    var $window = $(window),
+//        $article_callout = $('.article-callout');
+//
+//    function resize() {
+//        if ($window.width() < 450) {
+//            return $article_callout.addClass('overlay-tint');
+//        }
+//
+//        $article_callout.removeClass('overlay-tint');
+//    }
+//
+//    $window
+//        .resize(resize)
+//        .trigger('resize');
+//})(jQuery);
+
+
+
+//Arrow scroll
+$('.scroll-down-arrow').click (function() {
+	 $('html, body').animate({
+			scrollTop: $('.scroll-down-arrow').parent().next().offset().top - 70 //for the sticky nav
+		}, 'slow');
+	return false;			
+});
+		
+$(window).load(function(){
+	
+	if(document.documentElement.clientWidth>960){
+		//$.stellar({
+		//	 responsive: true,
+		//	 horizontalScrolling: false
+		//});
+	}
+	
+});
+
+
+$(window).resize(function(){
+	
+	CheckMobile();
+	
+	CheckSearchPlaceholder();
+	
+});
+
+
+//check for mobile breakpoint
+isMobile = false;
+ScrollOffset = 20;
+function CheckMobile(){
+	
+	if(document.documentElement.clientWidth>960){
+		isMobile=false;
+		ScrollOffset = 20; 
+	}else{
+		isMobile=true;
+		ScrollOffset = 25; 
+	}
+	
+	 SwapMobileBG();
+	//console.log(isMobile);
+}
+
+
+//adjust the search box placeholder based on the viewport
+function CheckSearchPlaceholder(){
+	
+	Placeholder = $("#navbar #nav-search input").data("desktop-placeholder");
+	QuestionsPlaceholder = $("#questions-search #questions_search_input").data("desktop-placeholder");
+	MobilePlaceholder = $("#nav-search input").data("mobile-placeholder");
+	
+	//console.log(Placeholder);
+	//console.log(MobilePlaceholder);
+	
+	if(document.documentElement.clientWidth>660){
+		$("#navbar #nav-search input").attr("placeholder", Placeholder);
+		$("#questions-search #questions_search_input").attr("placeholder", QuestionsPlaceholder);
+		$("#navbar #mobile_search_input").attr("placeholder", Placeholder);
+		if ($("#navbar #home_search").length){
+			$("#navbar #home_search input").attr("placeholder", Placeholder);
+		}
+	}else{
+		$("#navbar #nav-search input").attr("placeholder", MobilePlaceholder);
+		$("#questions-search #questions_search_input").attr("placeholder", QuestionsPlaceholder);
+		$("#navbar #mobile_search_input").attr("placeholder", MobilePlaceholder);
+		if ($("#navbar #home_search").length){
+			$("#navbar #home_search input").attr("placeholder", MobilePlaceholder);
+		}
+	}
+   //
+}
+
+
+
+
+//simple css disable body overflow causes menu items to jump
+//so this scripting solution is necessary
+function disableScrolling(){
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+}
+
+function enableScrolling(){
+    window.onscroll=function(){};
+}
+
+
+//ajax variables
+var baseUrl = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+
+var MyAjax = {
+		ajaxurl: baseUrl+"/wp-admin/admin-ajax.php"
+};
+
+
+
+//
+//swap mobile featured image backgrounds
+function SwapMobileBG(){
+	
+	Data = "";
+	
+
+	
+	if ($(".swap-mobile-bg").attr('data-mobile-bg-image')) {
+	
+		Data = $( ".swap-mobile-bg").data("mobile-bg-image");
+
+
+		if( Data.length>0){
+ 
+			DesktopBGURL = "url("+$(".swap-mobile-bg").data("bg-image")+")";
+			MobileBGURL = "url("+$(".swap-mobile-bg").data("mobile-bg-image")+")";
+
+			if(isMobile===false && $(".swap-mobile-bg").hasClass("mobile")){
+				//switch to desktop
+				$(".swap-mobile-bg").removeClass("mobile").addClass("desktop");
+				$(".swap-mobile-bg").css("background-image", DesktopBGURL);
+			}
+			if(isMobile===true && $(".swap-mobile-bg").hasClass("desktop")){
+				//switch to mobile
+				$(".swap-mobile-bg").removeClass("desktop").addClass("mobile");
+				$(".swap-mobile-bg").css("background-image", MobileBGURL);
+
+				//
+			}
+		}
+	
+	}
+	
+	//
+}
+
+ 
+//scroll reveal
+function ScrollRevealInit(){
+	
+	// Changing the defaults
+	window.sr = ScrollReveal();
+
+	// Customizing a reveal set
+	sr.reveal('.reveal', { duration: 500, delay: 250, origin: 'bottom', distance: '40px', opacity: 0, scale: 0.8, reset: false, viewFactor: 0.4, mobile: false });
+	
+	sr.reveal('div.content p img', { duration: 500, delay: 250, origin: 'bottom', distance: '40px', opacity: 0, scale: 0.8, reset: false, viewFactor: 0.4, mobile: false }, 250);
+	
+	sr.reveal('div.embedded-images img', { duration: 500, delay: 250, origin: 'bottom', distance: '40px', opacity: 0, scale: 0.8, reset: false, viewFactor: 0.8, mobile: false }, 250);
+	
+	// interval and custom config passed to reveal
+	
+	sr.reveal('.post-thumb', { duration: 500, delay: 150, origin: 'bottom', distance: '20px', opacity: 0, scale: 0.9, reset: false, viewFactor: 0.2, mobile: false }, 150);
+	
+	//sr.reveal('ul#topics_list li', { duration: 500, delay: 0, origin: 'bottom', distance: '20px', opacity: 0, scale: 0.9, reset: false, viewFactor: 0.1, mobile: false }, 150);
+	
+	sr.reveal('ul#home_categories li', { duration: 500, delay: 0, origin: 'bottom', distance: '0px', opacity: 0, scale: 0.9, reset: false, viewFactor: 0.1, mobile: false }, 150);
+	
+	
+	//
+}
+
+
+
+//shareable images
+
+function InitShareables(){
+	
+	//wrap each image with shareable
+	
+	if($(".shareable").length){
+		
+		$(".shareable").click(function(){
+			Source = $(this).prop('src') ;
+			var target = $(this).data('target');
+			ShowShareableOverlay(Source, target);
+		});
+		
+		ShareButtonCode = '<div class="shareable-btn"><div class="icon"></div>Share</div>';
+		//$(".shareable").wrap("<div class='share_embed_wrap'></div>");
+		$(".shareable").after( ShareButtonCode );
+		
+		$(".shareable").mouseenter(function(){
+			$(this).next(".shareable-btn").fadeIn(250, 'swing');
+		});
+		$(".shareable").mouseleave(function(){
+			$(this).next(".shareable-btn").fadeOut(250, 'swing');
+		});
+		
+		SetUpShareableOverlay();
+		
+		//if exists
+	}	
+	if($(".shareable-embed").length){
+		
+		$(".shareable-embed").click(function(){
+			Source = $(this).prop('src') ;
+			var target = $(this).data('target');
+			ShowShareableOverlay(Source, target);
+		});
+		
+		$(".shareable-embed").mouseenter(function(){
+			$(this).next(".shareable-btn").fadeIn(250, 'swing');
+		});
+			$(".shareable-embed").mouseleave(function(){
+			$(this).next(".shareable-btn").fadeOut(250, 'swing');
+		});
+		
+		SetUpShareableOverlay();
+		
+		
+		
+		//if exists
+	}
+	//
+}
+
+function ShowShareableOverlay(Source, target){
+	
+	NewImage = "<img data-target='"+target+"' src='"+Source+"' />";
+	$("#shareable-overlay #image_placeholder").html(NewImage);
+	
+	$("#shareable-overlay").fadeIn(250, 'swing');
+	//
+}
+
+function CloseShareableOverlay(){
+	$("#shareable-overlay").fadeOut(250, 'swing');
+}
+
+
+function SetUpShareableOverlay(){
+	
+	
+	
+		$("#shareable-overlay").click(function(){
+			CloseShareableOverlay();
+		});
+		
+		//overwrite default functions of overlay share code (using shortcode from sharing plugin)
+		//css can hide the print button if necessary. it is set up, just disabled
+		$("#shareable-overlay .wrapper .content .heateor_sss_sharing_container ul.heateor_sss_sharing_ul li.heateorSssSharingRound i").unbind().prop('onclick',null).off('click'); 
+		
+		
+		//twitter
+		$('.heateorSssSharing[alt="Twitter"]').click(function(e){
+			e.preventDefault();
+			var Image = $("#shareable-overlay #image_placeholder img").attr('data-target'),
+				ShareCode = "http://twitter.com/intent/tweet?text=%23ThisIsPlastics&url="+Image;
+		
+				heateorSssPopup(ShareCode);
+		});
+		//facebook
+		$("#shareable-overlay .wrapper .content .heateor_sss_sharing_container ul.heateor_sss_sharing_ul li.heateorSssSharingRound i.heateorSssFacebookBackground").click(function(e){
+			e.stopPropagation();
+			var Image = $("#shareable-overlay #image_placeholder img").attr('data-target'),
+			ShareCode = "https://www.facebook.com/sharer/sharer.php?u="+Image;
+			//stealing and modifying onclick code from current sharing plugin
+			heateorSssPopup(ShareCode);
+		});
+		//linkedin
+		$("#shareable-overlay .wrapper .content .heateor_sss_sharing_container ul.heateor_sss_sharing_ul li.heateorSssSharingRound i.heateorSssLinkedinBackground").click(function(e){
+			e.stopPropagation();
+			Image = $("#shareable-overlay #image_placeholder img").prop('src');
+			ShareCode = "http://www.linkedin.com/shareArticle?mini=true&url="+Image;
+			//stealing and modifying onclick code from current sharing plugin
+			heateorSssPopup(ShareCode);
+		});
+		//pinterest
+					
+		var url = '//assets.pinterest.com/js/pinit.js';
+		$.getScript( url, function() {
+			$('.heateorSssSharing[alt="Pinterest"]').click(function(f){
+				f.preventDefault();
+				var Image = $("#shareable-overlay #image_placeholder img").prop('src');
+				PinUtils.pinOne({
+					'media': Image
+				});
+			});
+		});
+
+		//google plus
+		$("#shareable-overlay .wrapper .content .heateor_sss_sharing_container ul.heateor_sss_sharing_ul li.heateorSssSharingRound i.heateorSssGoogleplusBackground").click(function(e){
+			e.stopPropagation();
+			Image = $("#shareable-overlay #image_placeholder img").prop('src');
+			ShareCode = "https://plus.google.com/share?url="+Image;
+			//stealing and modifying onclick code from current sharing plugin
+			heateorSssPopup(ShareCode);
+		});
+		//email
+		$("#shareable-overlay .wrapper .content .heateor_sss_sharing_container ul.heateor_sss_sharing_ul li.heateorSssSharingRound i.heateorSssEmailBackground").click(function(e){
+			e.stopPropagation();
+			Image = $("#shareable-overlay #image_placeholder img").prop('src');
+			//ShareCode = "https://plus.google.com/share?url="+Image;
+			//stealing and modifying onclick code from current sharing plugin
+			//heateorSssPopup(ShareCode);
+			window.location.href = 'mailto:?subject=This Is Plastics&body=' + Image;
+		});
+		//print
+		$("#shareable-overlay .wrapper .content .heateor_sss_sharing_container ul.heateor_sss_sharing_ul li.heateorSssSharingRound i.heateorSssPrintBackground").click(function(e){
+			e.stopPropagation();
+			//Image = $("#shareable-overlay #image_placeholder img").prop('src');
+			//ShareCode = "https://plus.google.com/share?url="+Image;
+			//stealing and modifying onclick code from current sharing plugin
+			//heateorSssPopup(ShareCode);
+			window.print();
+		});
+
+}
+
+$('#tab-wrapper .tabcontent').first().css('display', 'block');
+$('.tab button').first().addClass('active');
+$('.tab button').click( function(){
+	$('.tabcontent').css('display', 'none');
+	$('.tablinks').removeClass('active');
+	$('#'+ $(this).attr('id') +'.tabcontent').css('display', 'block');
+	$(this).addClass('active');
+ });
+
+ function defer(method) {
+	if (window.jQuery)
+	  method();
+	else
+	  setTimeout(function() {
+		defer(method)
+	  }, 50);
+  }
+  defer(function() {
+	(function($) {
+	  
+	  function doneResizing() {
+		var totalScroll = $('.resource-slider-frame').scrollLeft();
+		var itemWidth = $('.resource-slider-item').width();
+		var difference = totalScroll % itemWidth;
+		if ( difference !== 0 ) {
+		  $('.resource-slider-frame').animate({
+			scrollLeft: '-=' + difference
+		  }, 500, function() {
+			// check arrows
+			checkArrows();
+		  });
+		}
+	  }
+	  
+	  function checkArrows() {
+		var totalWidth = $('#resource-slider .resource-slider-item').length * $('.resource-slider-item').width();
+		var frameWidth = $('.resource-slider-frame').width();
+		var itemWidth = $('.resource-slider-item').width();
+		var totalScroll = $('.resource-slider-frame').scrollLeft();
+		
+		if ( ((totalWidth - frameWidth) - totalScroll) < itemWidth ) {
+		  $(".next").addClass("hidden");
+		  $(".next").removeClass("visible");
+		}
+		else {
+		  $(".next").addClass("visible");
+		  $(".next").removeClass("hidden");
+		}
+		if ( totalScroll < itemWidth ) {
+		  $(".prev").addClass("hidden");
+		  $(".prev").removeClass("visible");
+		}
+		else {
+		  $(".prev").addClass("visible");
+		  $(".prev").removeClass("hidden");
+		}
+	  }
+	  
+	  $('.arrow').on('click', function() {
+		var $this = $(this),
+		  width = $('.resource-slider-item').width(),
+		  speed = 500;
+		if ($this.hasClass('prev')) {
+		  $('.resource-slider-frame').animate({
+			scrollLeft: '-=' + width
+		  }, speed, function() {
+			// check arrows
+			checkArrows();
+		  });
+		} else if ($this.hasClass('next')) {
+		  $('.resource-slider-frame').animate({
+			scrollLeft: '+=' + width
+		  }, speed, function() {
+			// check arrows
+			checkArrows();
+		  });
+		}
+	  }); // end on arrow click
+	  
+	  $(window).on("load resize", function() {
+		checkArrows();
+		$('#resource-slider .resource-slider-item').each(function(i) {
+		  var $this = $(this),
+			left = $this.width() * i;
+		  $this.css({
+			left: left
+		  })
+		}); // end each
+	  }); // end window resize/load	
+	  
+	  var resizeId;		
+	  $(window).resize(function() {
+		  clearTimeout(resizeId);
+		  resizeId = setTimeout(doneResizing, 500);
+	  });
+	  
+	})(jQuery); // end function
+  });
+
+
