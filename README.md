@@ -1,6 +1,6 @@
 # **Reigns no País das Maravilhas**
 
-**Reigns no País das Maravilhas** é um jogo de escolhas binárias inspirado no livro e série de Alice no País das Maravilhas, utilizando a mecânica simples e viciante do jogo Reigns. Neste jogo, você assume o Perjonagem Jogador que caiu na toca do coelho, e então toma decisões que afetam sua jornada pelo País das Maravilhas. 
+**Reigns no País das Maravilhas** é um jogo de escolhas binárias inspirado no livro e série de Alice no País das Maravilhas, utilizando a mecânica simples e viciante do jogo Reigns. Neste jogo, você assume o Personagem Jogador que caiu na toca do coelho, e então toma decisões que afetam sua jornada pelo País das Maravilhas. 
 
 <center>
 
@@ -11,7 +11,6 @@
 Este projeto é inspirado no estilo de jogo **Reigns**, onde decisões simples de deslizar para a direita ou esquerda levam a diferentes desdobramentos na história. A rica narrativa e o vasto universo de **Alice no País das Maravilhas** fornecem o pano de fundo perfeito para um jogo de escolhas, onde cada decisão pode levar a aventuras épicas, lutas intensas e encontros com personagens icônicos.
 
 ![Wallpaper](./docs/assets/wallpaper.jpg)
-
 
 <center>
 

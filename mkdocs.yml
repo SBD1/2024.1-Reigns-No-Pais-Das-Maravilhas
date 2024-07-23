@@ -8,6 +8,8 @@ site_description: Site destinado à apresentação do projeto Reigns No País da
 
 nav: 
   - Início: index.md
+  - Apresentações:
+    - Entrega 1: apresentacoes/apresentacao1.md
   - Entrega 1: 
     - Dicionário de Dados: entrega1/dicionario_de_dados.md
     - Modelo Entidade-Relacionamento: entrega1/modelo_entidade_relacionamento.md
