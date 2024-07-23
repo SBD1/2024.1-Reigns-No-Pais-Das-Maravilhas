@@ -10,7 +10,7 @@
 
 Este projeto é inspirado no estilo de jogo **Reigns**, onde decisões simples de deslizar para a direita ou esquerda levam a diferentes desdobramentos na história. A rica narrativa e o vasto universo de **Alice no País das Maravilhas** fornecem o pano de fundo perfeito para um jogo de escolhas, onde cada decisão pode levar a aventuras épicas, lutas intensas e encontros com personagens icônicos.
 
-<img src="../docs/assets/wallpaper.jpg" alt="Wallpaper" width="100%"/>
+<img src="https://github.com/SBD1/2024.1-Reigns-No-Pais-Das-Maravilhas/blob/main/docs/assets/wallpaper.jpg?raw=true" alt="Wallpaper" width="100%"/>
 
 <center>
 
