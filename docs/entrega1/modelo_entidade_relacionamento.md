@@ -1,137 +1,112 @@
-### Entidades e Relacionamentos
+# **Modelo Entidade Relacionamento (MER)**
 
-## 1. **Capitão Pirata**
-- **Atributos**: 
-  - id: Identificador único
-  - nome: Nome do capitão
-  - recompensa: Valor da recompensa pela cabeça do capitão
-  - lealdade: Nível de lealdade da tripulação
-  - poder_tripulacao: Nível de poder da tripulação
-  - ouro: Quantidade de ouro
-  - fruta_diabo: Fruta do diabo consumida (se houver)
+## **Introdução**
+O **Modelo Entidade Relacionamento (MER)** é uma representação gráfica que ilustra os objetos e suas interações dentro de um domínio de negócios. Ele é composto por entidades, atributos e relacionamentos.
 
-## 2. **Carta**
-- **Atributos**:
-  - id: Identificador único
-  - descricao: Descrição da carta
-  - tipo: Tipo de carta (decisão, pirata, marinheiro, evento, fim de jogo)
-  - efeito_recompensa: Efeito na recompensa
-  - efeito_lealdade: Efeito na lealdade
-  - efeito_poder_tripulacao: Efeito no poder da tripulação
-  - efeito_ouro: Efeito no ouro
-  - proxima_carta: Referência à próxima carta (para sequências)
+As entidades representam objetos no domínio de negócios, como clientes, produtos, pedidos, entre outros. Os atributos são as características que descrevem as entidades, enquanto os relacionamentos representam as associações entre essas entidades.
 
-## 3. **Desafio**
-- **Atributos**:
-  - id: Identificador único
-  - descricao: Descrição do desafio
+## **Descrição Conceitual**
+A descrição conceitual é uma etapa essencial na modelagem de dados, que envolve a análise dos elementos e fenômenos relevantes de uma realidade observada ou imaginada. A partir dessa análise, é formado um modelo abstrato que encapsula o conhecimento adquirido.
 
-## 5. **Pirata**
-- **Atributos**:
-  - id: Identificador único
-  - nome: Nome do tripulante
-  - tipo: Tipo de tripulante, inimigo, neutro.
-  - forca: Força do tripulante
-  - akuma_no_mi: Fruta do diabo consumida (se houver)
+O MER opera em um nível de abstração elevado, desconsiderando detalhes específicos de implementação em banco de dados. Em vez disso, ele se concentra na forma como as estruturas de dados serão concebidas para armazenar informações de maneira organizada e significativa.
 
-## 6. **Ilha**
-- **Atributos**:
-  - id: Identificador único
-  - nome: Nome da ilha
-  - descricao: Descrição da ilha
+## <a>Entidades e Atributos</a>
 
-## 7. **Fruta do Diabo**
-- **Atributos**:
-  - id: Identificador único
-  - nome: Nome da fruta
-  - poder: Poder concedido pela fruta
-  - efeito_secundario: Efeito secundário da fruta
+<details>
+<summary><strong>Entidades e Atributos</strong></summary>
+<a><strong>Character (Personagem)</strong></a>
+   <li>id_character (PK)</li>
+   <li>name</li>
+   <li>image</li>
+<a><strong>PC (Personagem Jogador)</strong></a>
+   <li>id_character (PK, FK)</li>
+   <li>start</li>
+   <li>end</li>
+   <li>cause</li>
+   <li>age</li>
+<a><strong>NPC (Personagem Não-Jogador)</strong></a>
+   <li>id_character (PK, FK)</li>
+<a><strong>Inventory (Inventário)</strong></a>
+   <li>id_inventory (PK)</li>
+   <li>id_character (FK)</li>
+   <li>id_item (FK)</li>
+<a><strong>Item</strong></a>
+   <li>id_item (PK)</li>
+   <li>name_item</li>
+   <li>type</li>
+<a><strong>Resource (Recurso)</strong></a>
+   <li>id_resource (PK)</li>
+   <li>queen</li>
+   <li>life</li>
+   <li>popularity</li>
+   <li>size</li>
+<a><strong>Deck</strong></a>
+   <li>id_deck (PK)</li>
+   <li>name_local</li>
+   <li>completed</li>
+<a><strong>Local</strong></a>
+   <li>id_character (PK, FK)</li>
+   <li>name</li>
+   <li>image</li>
+<a><strong>Card (Carta)</strong></a>
+   <li>id_card (PK)</li>
+   <li>id_participants (FK)</li>
+   <li>type</li>
+   <li>text</li>
+   <li>left</li>
+   <li>right</li>
+<a><strong>Event (Evento)</strong></a>
+   <li>id_event (PK)</li>
+<a><strong>Action (Ação)</strong></a>
+   <li>id_action (PK)</li>
+</details>
 
-## 8. **evento**
-- **Atributos**:
-  - id: Identificador único
-  - tipo: (decisão, evento, luta, fim de jogo)
-  - descricao: Descrição do evento
-  - efeito_recompensa: Efeito na recompensa
-  - efeito_lealdade: Efeito na lealdade
-  - efeito_poder_tripulacao: Efeito no poder da tripulação
-  - efeito_ouro: Efeito no ouro
+## <a>Relacionamentos</a>
 
-## 9. **Fim de Jogo**
-- **Atributos**:
-  - id: Identificador único
-  - tipo: (recompensa alta, recompensa baixa, lealdade alta, lealdade baixa, poder_tripulacao alta, poder_tripulacao baixa, ouro alto, ouro baixo)
-  - descricao: Motivo pelo qual o jogo terminou
+<details>
+<summary><strong>Relacionamentos</strong></summary>
+<a><strong>PC Carries Inventory</strong></a>
+   <li>Um Personagem Jogador carrega um Inventário (1,1)</li>
+   <li>Um Inventário é carregado por um Personagem Jogador (1,1)</li>
+<a><strong>PC Depends on Resource</strong></a>
+   <li>Um Personagem Jogador depende do Recursos (1,1)</li>
+   <li>Um Recurso é dependencia de um personagem (1,1)</li>
+<a><strong>PC Controls Action</strong></a>
+   <li>Um Personagem Jogador controla uma Ação (1,1)</li>
+   <li>Uma Ação é controlada por um Personagem Jogador (1,1)</li>
+   <a><strong>PC Controls Event</strong></a>
+   <li>Um Personagem Jogador controla um Evento (1,1)</li>
+   <li>Um Evento é controlado por um Personagem Jogador (1,1)</li>
+<a><strong>NPC Appears in Card</strong></a>
+   <li>Um Personagem Não-Jogador pode ou não aparecer em uma Carta (0,1)</li>
+   <li>Uma Carta pode ou não conter um Personagem Não-Jogador (0,1)</li>
+<a><strong>Local Appears in Card</strong></a>
+   <li>Um Local pode ou não aparecer em uma Carta (0,1)</li>
+   <li>Uma Carta pode ou não conter um Local (0,1)</li>
+<a><strong>Inventory Contains Items</strong></a>
+   <li>Um Inventário contém múltiplos Itens (1,n)</li>
+   <li>Um Item está contido em um Inventário (0,1)</li>
+<a><strong>Carta Event Generates Result</strong></a>
+   <li>Uma Carta de Evento gera um resultado (1,1)</li>
+   <li>Um Resultado é gerado por uma Carta de Evento (1,1)</li>
+<a><strong>Item Drops by Carta Event</strong></a>
+   <li>Item é solto de um Evento (1,1)</li>
+   <li>Um Evento pode ou não soltar múltiplos Itens (0,n)</li>
+<a><strong>Deck Groups Cards</strong></a>
+   <li>Um Deck agrupa múltiplas Cartas (1,n)</li>
+   <li>Uma Carta pertence a um Deck (1,1)</li>
+<a><strong>Resource Affected by Action</strong></a>
+   <li>Um Recurso é afetado por uma Carta de Ação (1,1)</li>
+   <li>Uma Carta de Ação pode ou não afetar um Recurso (0,1)</li>
+<a><strong>Result Affects Resource</strong></a>
+   <li>Um Resultado pode ou não afetar um Recurso (0,1)</li>
+   <li>Um Recurso pode ser afetado um Evento (0,1)</li>
+</details>
 
-## 10. **Tripulação**
-- **Atributos**:
-  - id: Identificador único
-  - espaço: tamanho do navio
-  - contem: (médico, espadachim, cozinheiro, navegador, arqueiro, atirador, carpinteiro, músico, arqueólogo, historiador, botânico, zoólogo, arquiteto, engenheiro, cientista, médico, espião, assassino, caçador de recompensas, mercenário, marinheiro, soldado, guerreiro, bárbaro, ladrão, pirata, nobre, realeza, plebeu, escravo, criminoso, fugitivo, refugiado, exilado, prisioneiro, condenado, foragido, procurado, perseguido, caçado, rastreado).
+## Referência
+**Elmasri, R., & Navathe, S. B.** (2016). *Fundamentals of Database Systems* (7th ed.). Pearson.
 
-## 11. **Marinheiro**
-- **Atributos**:
-  - id: Identificador único
-  - nome: Nome do marinheiro
-  - tipo: Tipo de marinheiro
-  - forca: Força do marinheiro
-  - akuma_no_mi: Fruta do diabo consumida (se houver)
-
-## Relacionamentos
-
-1. **Capitão Pirata** recruta **Tripulante**.
-2. **Capitão Pirata** visita **Ilha**.
-3. **Capitão Pirata** come **Frutas do Diabo**.
-4. **Capitão Pirata** vence **Desafios**.
-5. **Capitão Pirata** lidera **Tripulação**.
-6. **Ilha** contém **Cartas**.
-7. **Cartas** desencadeia **Eventos**.
-8. **Eventos** finaliza **Fim de Jogo**.
-9. **Eventos** retorna **Cartas**.
-10. 
-
-### Exemplos de Cartas e Decisões
-
-## Carta 1: "Espadachim"
-- **Descrição**: "Capitão, você me permite sair para comprar uma espada mais forte?"
-  - **Decisão 1**: Não (efeito: -tripulação, -reputação)
-  - **Decisão 2**: Sim (efeito: +tripulação, +reputação, -ouro)
-
-## Carta 2: "Ladra"
-- **Descrição**: "Capitão, vi um acampamento cheio de ouro, me permite saquear e trazer esse ouro para a gente?"
-  - **Decisão 1**: Não (efeito: +tripulação, -reputação, -ouro, -recompensa)
-  - **Decisão 2**: Sim (efeito: -tripulação, +reputação, +ouro, +recompensa)
-
-### Funções e Mecanismos
-
-1. **Eventos Aleatórios**: Geração de cartas e eventos aleatórios para criar variedade no jogo.
-2. **Sistema de Equilíbrio**: Manter o equilíbrio entre os fatores (Recompensa, Lealdade, Ouro, Saúde) é crucial para o sucesso.
-3. **Desenvolvimento de História**: As decisões tomadas pelo jogador afetam a narrativa e desbloqueiam novas cartas e eventos.
-
-### Implementação de Eventos e Desafios
-
-## Desafio: "Conquistar uma Ilha"
-- **Descrição**: Uma ilha rica em recursos está sob controle de piratas inimigos. Conquiste a ilha.
-  - **Recompensa**: +Recursos
-  - **Dificuldade**: Alta
-
-## Luta: "Ataque de Piratas"
-- **Descrição**: Você é atacado por piratas rivais.
-  - **Perda de Tripulantes**: -3 Tripulantes
-  - **Perda de Poder da Tripulação**: -10
-  - **Perda de Saúde**: -15
-
-## Doença: "Febre Marítima"
-- **Nome**: Febre Marítima
-- **Efeito na Saúde**: -20 Saúde
-- **Duração**: 3 Turnos
-
-### Função de Dados Aleatórios
-
-Para incorporar a função de lançar dados ocasionalmente, podemos criar eventos que exijam uma jogada de dados para determinar o resultado.
-
-## Evento: "Lançar os Dados"
-- **Descrição**: Você encontrou um baú misterioso. Lance os dados para determinar o conteúdo.
-  - **Decisão 1**: Lançar os dados (Efeito: Resultado aleatório de +Ouro, +Recompensa, +Saúde, ou uma nova Doença)
-  - **Decisão 2**: Não lançar (Efeito: Nenhum)
-
+## Histórico de Versão
+| Data |	Versão	| Descrição	| Autor |
+| --- | --- | --- | --- |
+| 22/07/24 |	1.0 |	Criação do documento| [Kauan Eiras](https://github.com/kauaneiras)

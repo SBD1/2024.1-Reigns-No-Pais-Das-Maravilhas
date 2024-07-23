@@ -1,52 +1,50 @@
-# **One Piece: Reigns**
+# **Reigns no País das Maravilhas**
 
-**One Piece: Reigns** é um jogo de escolhas inspirado na popular série de anime e mangá One Piece, utilizando a mecânica simples e viciante do jogo Reigns. Neste jogo, você assume o papel de um Capitão Pirata e toma decisões que afetam sua tripulação, suas recompensas, e sua jornada pelo Grand Line. 
+**Reigns no País das Maravilhas** é um jogo de escolhas binárias inspirado no livro e série de Alice no País das Maravilhas, utilizando a mecânica simples e viciante do jogo Reigns. Neste jogo, você assume o Perjonagem Jogador que caiu na toca do coelho, e então toma decisões que afetam sua jornada pelo País das Maravilhas. 
 
 <center>
-
-![One Piece](assets/onepiece.jpg)
 
 </center>
 
 ## Inspiração
 
-Este projeto é inspirado no estilo de jogo de [Reigns](https://play.google.com/store/apps/details?id=com.devolver.reigns&hl=pt_BR&pli=1), onde decisões simples de deslizar para a direita ou esquerda levam a diferentes desdobramentos na história. A rica narrativa e o vasto universo de [One Piece](https://opexcast.com.br/) fornecem o pano de fundo perfeito para um jogo de escolhas, onde cada decisão pode levar a aventuras épicas, lutas intensas e encontros com personagens icônicos.
+Este projeto é inspirado no estilo de jogo **Reigns**, onde decisões simples de deslizar para a direita ou esquerda levam a diferentes desdobramentos na história. A rica narrativa e o vasto universo de **Alice no País das Maravilhas** fornecem o pano de fundo perfeito para um jogo de escolhas, onde cada decisão pode levar a aventuras épicas, lutas intensas e encontros com personagens icônicos.
 
 <center>
-
-![Reigns](assets/reigns.avif)
 
 </center>
 
 ## Temática
 
-O jogo mergulha você no mundo de One Piece, onde você pode:
-- Recrutar e liderar uma tripulação de piratas leais.
-- Explorar ilhas misteriosas e buscar tesouros valiosos.
+O jogo mergulha você no mundo de Alice no País das Maravilhas, onde você pode:
+- Conhecer personagens icônicos do livro.
+- Explorar locais misteriosos e encontrar itens valiosos.
 - Enfrentar desafios e inimigos formidáveis.
-- Consumir Frutas do Diabo e ganhar poderes incríveis.
-- Gerenciar recursos, manter a lealdade da tripulação e sobreviver a doenças.
+- Consumir poções mágicas e ganhar poderes incríveis.
+- Gerenciar recursos, manter a lealdade de seus aliados e sobreviver a doenças.
+- Encontrar o caminho de volta para casa.
+- Descobrir os segredos do País das Maravilhas.
+- Encontrar o coelho branco.
+- Encontrar a rainha de copas.
+- Encontrar o chapeleiro maluco.
+- Encontrar o gato de cheshire.
+- Encontrar a lagarta azul.
+- Encontrar o rato.
+- Encontrar o grifo.
+- Encontrar a tartaruga falsa.
 
 ## Instruções de Jogo
 
-1. **Início**: O jogo começa com você no controle de um Capitão Pirata. Você deve tomar decisões que afetarão sua jornada, a lealdade da sua tripulação, suas riquezas e sua saúde.
-
-2. **Decisões**: Cada carta apresenta uma situação ou evento. Deslize para a esquerda ou direita para escolher uma ação. Suas escolhas terão consequências positivas ou negativas nos atributos do Capitão e da tripulação.
-
-3. **Gestão**: Gerencie seus recursos com sabedoria. Mantenha a lealdade da sua tripulação alta, cuide da sua saúde e acumule tesouros para prosperar.
-
-4. **Exploração**: Viaje para diferentes ilhas, enfrente desafios e lute contra inimigos. Cada nova localização pode trazer riquezas ou perigos.
-
+1. **Início**: O jogo começa com você no controle de um Personagem Jogador que caiu na toca do coelho. Você deve tomar decisões que afetarão sua popularidade, saúde, tamanho e o coração da rainha de copas.
+2. **Decisões**: Cada carta apresenta uma situação ou evento. Deslize para a esquerda ou direita para escolher uma ação. Suas escolhas terão consequências positivas ou negativas nos atributos do Personagem Jogador e da rainha de copas.
+3. **Gestão**: Gerencie seus recursos com sabedoria. Mantenha a popularidade da rainha de copas alta, cuide da sua saúde e acumule tesouros para prosperar.
+4. **Exploração**: Viaje para diferentes locais, enfrente desafios e lute contra inimigos. Cada nova localização pode trazer riquezas ou perigos.
 5. **Progresso**: Avance na história enfrentando eventos e desafios que testarão suas habilidades de liderança e estratégia.
-
+6. **Final**: Encontre o caminho de volta para casa ou morra no País das Maravilhas.
+   
 ## Contato
 
 Para dúvidas ou sugestões, entre em contato pelo e-mail: [232014727@aluno.unb.br](mailto:232014727@aluno.unb.br)
-
----
-
-**Divirta-se navegando pelo Grand Line e se tornando o maior Capitão Pirata de todos os tempos!**
-
 
 ## Autor
    
