@@ -1,11 +1,11 @@
 # **Modelo Relacional (MREL)**
 
-## Introdução
-O **Modelo Relacional (MREL)** é uma representação de um banco de dados que descreve a estrutura das tabelas, os campos e as relações entre elas. Ele é uma forma de organizar as informações de forma lógica e coerente, facilitando o armazenamento e a recuperação dos dados.
+## **Introdução**
+O **Modelo Relacional (MREL)** é uma abordagem fundamental para a organização de dados em um banco de dados, onde as informações são estruturadas em tabelas inter-relacionadas. Cada tabela no modelo relacional representa uma entidade do sistema, e cada coluna dentro dessas tabelas corresponde a um atributo específico dessa entidade. 
 
-O MREL é composto por tabelas, que representam as entidades do sistema, e colunas, que representam os atributos dessas entidades. Cada tabela é representada por um nome e uma lista de colunas, e cada coluna é representada por um nome e um tipo de dado.
+O MREL facilita o armazenamento eficiente e a recuperação precisa dos dados, proporcionando uma base lógica e coerente para a manipulação das informações. As relações entre as tabelas são estabelecidas através de chaves primárias e estrangeiras, que asseguram a integridade e a consistência dos dados ao longo do sistema. Esse modelo permite que as complexidades do domínio sejam mapeadas de maneira organizada, garantindo que as operações de inserção, atualização, exclusão e consulta sejam realizadas de forma eficiente.
 
-## Modelo Relacional
+## **Modelo Relacional**
 
 <center>
 ![Modelo Relacional](../assets/modulo1-MREL.png)
@@ -14,7 +14,8 @@ Fonte: [Kauan Eiras](https://github.com/kauaneiras), desenvolvido no [BRModelo](
 
 </center>
 
-## Histórico de Versão
-| Data |	Versão	| Descrição	| Autor |
-| --- | --- | --- | --- |
-| 22/07/24 |	1.0 |	Criação do documento| [Kauan Eiras](https://github.com/kauaneiras)
+## **Histórico de Versão**
+| Data      | Versão | Descrição              | Autor                                        |
+|-----------|--------|------------------------|----------------------------------------------|
+| 22/07/24  | 1.0    | Criação do documento    | [Kauan Eiras](https://github.com/kauaneiras) |
+| 19/08/24  | 2.0    | Revisão e atualização de entidades e relacionamentos    | [Kauan Eiras](https://github.com/kauaneiras) |
