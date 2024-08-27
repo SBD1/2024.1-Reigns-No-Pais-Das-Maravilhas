@@ -18,7 +18,9 @@ CREATE TABLE PC (
 CREATE TABLE End (
     id_end SERIAL PRIMARY KEY,
     cause VARCHAR(255) NOT NULL,
-    title VARCHAR(100) NOT NULL
+    title VARCHAR(100) NOT NULL,
+    about VARCHAR(255) NOT NULL,
+    image BYTEA
 );
 
 CREATE TABLE Adventure (
@@ -56,6 +58,8 @@ CREATE TABLE Card (
     id_card SERIAL PRIMARY KEY,
     id_npc INT,
     id_dialogue INT,
+    answer_right VARCHAR(255),
+    answer_left VARCHAR(255),
     FOREIGN KEY (id_npc) REFERENCES NPC(id_npc),
     FOREIGN KEY (id_dialogue) REFERENCES Dialogue(id_dialogue)
 );
@@ -80,8 +84,8 @@ CREATE TABLE Card_Action (
     FOREIGN KEY (id_item) REFERENCES Item(id_item)
 );
 
-CREATE TABLE NPC (
-    id_npc SERIAL PRIMARY KEY,
+CREATE TABLE Plot (
+    id_plot SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     image BYTEA
 );

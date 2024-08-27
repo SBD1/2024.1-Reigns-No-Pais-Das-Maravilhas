@@ -39,6 +39,7 @@ Descrição: A entidade **End** descreve os possíveis finais de uma aventura.
 | id_end           | INT          | Identificador do fim           | 1-5000             | não                    | PK       |                  |
 | cause            | VARCHAR(150) | Causa do fim da aventura       | a-z, A-Z           | não                    |          |                  |
 | title            | VARCHAR(150) | Título do fim                  | a-z, A-Z           | não                    |          |                  |
+| about            | VARCHAR(300) | Título do fim                  | a-z, A-Z           | não                    |          |                  |
 
 ## **Entidade: Deck (Baralho)**
 
