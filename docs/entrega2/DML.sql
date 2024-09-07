@@ -121,11 +121,9 @@ INSERT INTO Resource (id_resource, queen, popularity, life, size) VALUES
 (104, 0, 0, 0, -100),
 (105, 0, 0, -100, 0),
 (106, 0, -100, 0, 0),
-(107, -100, 0, 0, 0),
+(107, -100, 0, 0, 0);
 
--- Criando NPCs com IDs automáticos
-
-INSERT INTO Plot (id_plot, name, image) VALUES 
+INSERT INTO Scene (scene_id, name, image) VALUES 
 (1, 'Chessur', NULL),
 (2, 'Chapeleiro Maluco', NULL),
 (3, 'Coelho Branco', NULL),
@@ -143,182 +141,177 @@ INSERT INTO Plot (id_plot, name, image) VALUES
 (1000, 'Coelho Correndo', NULL),
 (1001, 'Queda no Buraco', NULL),
 (1002, 'Biscoito do Crescimento', NULL),
-(1003, 'Liquido do Encolhimento ', NULL),
+(1003, 'Liquido do Encolhimento', NULL),
 (1004, 'Porta Trancada', NULL),
-(1005, 'País das Maravilhas', NULL);
+(1005, 'País das Maravilhas', NULL),
 (1010, 'Enchente', NULL),
 (1012, 'Coelho Apressado', NULL),
 (1013, 'Espelho', NULL),
 (1014, 'Buraco', NULL),
 (1015, 'Febre', NULL),
-(1016, 'Espinho', NULL);
+(1016, 'Espinho', NULL),
+(1017, 'Gato Risonho Desaparecendo', NULL),
+(1018, 'Salão das Portas', NULL),
+(1019, 'Jardim das Flores Falantes', NULL),
+(1020, 'Jogo de Croquet', NULL),
+(1021, 'Mesa de Chá do Chapeleiro', NULL),
+(1022, 'Tribunal da Rainha de Copas', NULL),
+(1023, 'Brincadeira de Palavras', NULL),
+(1024, 'Corrida Maluca', NULL),
+(1025, 'Transformação de Alice', NULL),
+(1026, 'O Sonho', NULL);
 
-INSERT INTO Dialogue (id_dialogue, dialogue) VALUES 
-(1, 'Você acredita que é mais seguro desaparecer ou enfrentar seus medos?'), 
-(2, 'O que é mais real, os sonhos ou as lembranças?'),
-(3, 'Você confia no que vê, ou no que sente?'),
-(4, 'Qual é a verdadeira loucura, o caos ou a ordem?'),
-(5, 'Você jogaria um jogo sabendo que a Rainha trapaceia?'),
-(6, 'Se pudesse escolher, preferiria a sombra ou a luz?'),
-(7, 'Poder absoluto é uma bênção ou uma maldição?'),
-(8, 'O que você mais deseja: controle ou liberdade?'),
-(9, 'O País das Maravilhas te transformou ou revelou quem você realmente é?'),
-(10, 'Desaparecer pode ser uma estratégia inteligente, não acha?'),
+
+-- Inserindo diálogos na tabela Dialogue
+INSERT INTO Dialogue (dialogue_id, description) VALUES 
+
+-- Diálogos Gerais
+(1, 'Desaparecer ou enfrentar?'), 
+(2, 'Sonho ou lembrança?'),
+(3, 'Confiar no que vê ou no que sente?'),
+(4, 'Caos ou ordem?'),
+(5, 'Jogar sabendo que a Rainha trapaceia?'),
+(6, 'Sombra ou luz?'),
+(7, 'Bênção ou maldição?'),
+(8, 'Controle ou liberdade?'),
+(9, 'Te transformou ou revelou?'),
+(10, 'Desaparecer é inteligente?'),
 
 -- Chapeleiro Maluco
-(11, 'Você já parou para pensar que todos somos loucos aqui?'),
-(12, 'Ser normal é uma maldição ou uma bênção?'),
-(13, 'O que você prefere, uma xícara de chá ou a companhia da Rainha?'),
-(14, 'Se pudesse escolher, viveria na lógica ou no absurdo?'),
-(15, 'Aceitaria um chapéu que te deixaria mais... curioso?'),
-(16, 'O tempo corre contra ou a favor de você?'),
-(17, 'Se pudesse tomar chá para sempre, o faria?'),
-(18, 'O que é mais real, o agora ou o que poderia ser?'),
-(19, 'Você seguiria seus sentidos ou sua intuição?'),
-(20, 'Você acha que minha loucura é contagiante?'),
+(11, 'Todos somos loucos aqui?'),
+(12, 'Ser normal é uma maldição?'),
+(13, 'Chá ou Rainha?'),
+(14, 'Lógica ou absurdo?'),
+(15, 'Aceita um chapéu curioso?'),
+(16, 'Tempo contra você?'),
+(17, 'Tomaria chá para sempre?'),
+(18, 'Agora ou poderia ser?'),
+(19, 'Sentidos ou intuição?'),
+(20, 'Minha loucura é contagiante?'),
 
 -- Rainha de Copas
-(21, 'Você obedece sem questionar?'),
-(22, 'Você acha que merece estar ao meu lado?'),
-(23, 'Quem você acha que devo punir hoje?'),
-(24, 'Você me juraria lealdade incondicional?'),
-(25, 'Você gosta de jogar croquet?'),
-(26, 'Você já pensou em trair minha confiança?'),
-(27, 'O que faria se estivesse no meu lugar?'),
-(28, 'Acha que sou justa em minhas decisões?'),
-(29, 'Você tem medo de mim?'),
-(30, 'Você acredita que a confiança é uma via de mão dupla?'),
+(21, 'Obedece sem questionar?'),
+(22, 'Merece estar ao meu lado?'),
+(23, 'Quem devo punir?'),
+(24, 'Jura lealdade incondicional?'),
+(25, 'Gosta de jogar croquet?'),
+(26, 'Trairia minha confiança?'),
+(27, 'No meu lugar, o que faria?'),
+(28, 'Sou justa?'),
+(29, 'Tem medo de mim?'),
+(30, 'Confiança é uma via de mão dupla?'),
 
 -- Lebre de Março
-(31, 'Você prefere chá ou café?'),
-(32, 'Aceitaria uma xícara de chá?'),
-(33, 'Você acredita que o tempo está contra nós?'),
-(34, 'Se pudesse escolher, preferiria viver no passado ou no presente?'),
-(35, 'Você confia mais na realidade ou na imaginação?'),
+(31, 'Chá ou café?'),
+(32, 'Aceita uma xícara?'),
+(33, 'Tempo está contra nós?'),
+(34, 'Passado ou presente?'),
+(35, 'Realidade ou imaginação?'),
 
 -- Arganaz (Dormouse)
-(36, 'Você acha que dormir demais é um problema?'),
-(37, 'Eu sou preguiçoso ou apenas cansado?'),
-(38, 'Você confiaria em um conselheiro que dorme tanto quanto eu?'),
-(39, 'O que você acha de alguém que sonha com a Rainha?'),
+(36, 'Dormir demais é problema?'),
+(37, 'Sou preguiçoso?'),
+(38, 'Confiaria em um conselheiro dorminhoco?'),
+(39, 'Sonhar com a Rainha é estranho?'),
 
 -- Coelho Branco
-(40, 'Estou atrasado! Devo correr ou enfrentar as consequências?'),
-(41, 'Você acha que é mais importante ser pontual ou ser correto?'),
-(42, 'Se você tivesse pouco tempo, o que priorizaria: dever ou desejo?'),
-(43, 'Você acha que é possível recuperar o tempo perdido?'),
-(44, 'O que você faz quando o tempo parece escapar?'),
-(45, 'Você já sentiu que está correndo em círculos?'),
-(46, 'Você acha que é melhor chegar cedo ou exatamente na hora?'),
-(47, 'O que você faria se soubesse que está atrasado para algo importante?'),
-(48, 'Se pudesse voltar no tempo, mudaria alguma coisa?'),
-(49, 'Você já sentiu que o tempo está conspirando contra você?'),
+(40, 'Correr ou enfrentar?'),
+(41, 'Pontual ou correto?'),
+(42, 'Dever ou desejo?'),
+(43, 'Recuperar o tempo perdido?'),
+(44, 'Tempo escapa?'),
+(45, 'Correndo em círculos?'),
+(46, 'Cedo ou na hora?'),
+(47, 'Atrasado para algo importante?'),
+(48, 'Voltaria no tempo?'),
+(49, 'Tempo conspira contra você?'),
 
 -- Cachorro
-(50, 'Você confia em seus instintos?'),
-(51, 'O que você faria para proteger aqueles que ama?'),
-(52, 'A lealdade é absoluta ou condicional?'),
-(53, 'Você já se perguntou o que é mais importante: a força ou o coração?'),
-(54, 'Você seguiria ordens que vão contra sua moral?'),
-(55, 'Como você lida com a traição?'),
-(56, 'Se tivesse que escolher entre proteger um amigo ou cumprir um dever, o que faria?'),
-(57, 'Você acha que é possível ser forte e gentil ao mesmo tempo?'),
-(58, 'O que você prefere: ser temido ou ser amado?'),
-(59, 'Você acredita que a justiça deve ser severa ou misericordiosa?'),
+(50, 'Confia em seus instintos?'),
+(51, 'Proteger quem ama?'),
+(52, 'Lealdade é absoluta?'),
+(53, 'Força ou coração?'),
+(54, 'Seguiria ordens contra sua moral?'),
+(55, 'Como lida com traição?'),
+(56, 'Proteger amigo ou cumprir dever?'),
+(57, 'Ser forte e gentil ao mesmo tempo?'),
+(58, 'Temido ou amado?'),
+(59, 'Justiça severa ou misericordiosa?'),
 
 -- Tweedledee e Tweedledum
-(60, 'Se você tivesse que escolher, preferiria a verdade ou a felicidade?'),
-(61, 'Quem você acha que é o mais inteligente, eu ou ele?'),
-(62, 'Você já se perguntou por que as coisas são assim?'),
-(63, 'Se nós brigássemos, quem você apoiaria?'),
-(64, 'O que você faria se descobrisse que nada disso é real?'),
-(65, 'Se você tivesse que nos escolher, escolheria a mim ou a ele?'),
-(66, 'Quem é mais assustador, a Rainha ou nós dois juntos?'),
-(67, 'Você acha que é possível ganhar todos os jogos, ou alguns são feitos para perder?'),
-(68, 'Se nós dois estivéssemos mentindo, você acreditaria em quem?'),
-(69, 'Se um de nós desaparecesse, sentiria falta?'),
+(60, 'Verdade ou felicidade?'),
+(61, 'Quem é mais inteligente, eu ou ele?'),
+(62, 'Por que as coisas são assim?'),
+(63, 'Se brigássemos, quem apoiaria?'),
+(64, 'Nada disso é real?'),
+(65, 'Escolheria a mim ou a ele?'),
+(66, 'Rainha ou nós dois juntos?'),
+(67, 'Ganhar todos os jogos?'),
+(68, 'Se mentíssemos, em quem acreditaria?'),
+(69, 'Sentiria falta se desaparecêssemos?'),
 
 -- Homem Queixudo
-(70, 'Você realmente acha que é digna da atenção da Rainha?'),
-(71, 'Não acha que a Rainha já tem companhias melhores do que você?'),
-(72, 'A Rainha realmente confiaria em alguém tão... comum como você?'),
-(73, 'Você acha que pode realmente entender as complexidades da corte?'),
-(74, 'Se a Rainha soubesse de todos os seus segredos, ainda te aceitaria?'),
-(75, 'Você realmente acredita que pode superar minha influência na corte?'),
-(76, 'Você acha que a Rainha precisa de alguém como você para orientá-la?'),
-(77, 'Se tivesse que escolher entre sua lealdade e sua segurança, o que faria?'),
-(78, 'A Rainha gosta de pessoas que falam a verdade, mas será que você se atreveria?'),
-(79, 'Você acha que a Rainha pode confiar totalmente em você?'),
+(70, 'Digna da atenção da Rainha?'),
+(71, 'Rainha tem companhias melhores?'),
+(72, 'Rainha confiaria em você?'),
+(73, 'Entende as complexidades da corte?'),
+(74, 'Rainha te aceitaria conhecendo seus segredos?'),
+(75, 'Pode superar minha influência?'),
+(76, 'Rainha precisa de você para orientação?'),
+(77, 'Lealdade ou segurança?'),
+(78, 'Se atreveria a falar a verdade?'),
+(79, 'Rainha pode confiar em você?'),
 
 -- Mulher Orelhuda
-(80, 'Eu ouvi algo muito interessante sobre você, gostaria de saber?'),
-(81, 'Você acha que é prudente que a Rainha confie em alguém como você?'),
-(82, 'Se a Rainha soubesse o que eu ouvi sobre você, como você se sentiria?'),
-(83, 'Você acha que a Rainha deveria ouvir tudo, ou algumas coisas devem ser mantidas em segredo?'),
-(84, 'Eu sempre ouço o que as pessoas dizem sobre você, deveria compartilhar com a Rainha?'),
-(85, 'Você acha que pode esconder algo de mim?'),
-(86, 'Eu poderia contar tantas coisas à Rainha, mas você me daria uma boa razão para não fazer isso?'),
-(87, 'Você acredita que a lealdade deve ser provada ou apenas declarada?'),
-(88, 'Você acha que falar demais pode ser perigoso?'),
-(89, 'Eu ouvi dizer que a Rainha não gosta de quem esconde segredos, você concorda?'),
+(80, 'Quer saber o que ouvi sobre você?'),
+(81, 'Rainha deveria confiar em você?'),
+(82, 'Se Rainha soubesse, como se sentiria?'),
+(83, 'Rainha deveria ouvir tudo?'),
+(84, 'Devo compartilhar com a Rainha?'),
+(85, 'Pode esconder algo de mim?'),
+(86, 'Me daria uma razão para não contar à Rainha?'),
+(87, 'Lealdade deve ser provada?'),
+(88, 'Falar demais é perigoso?'),
+(89, 'Rainha não gosta de segredos, concorda?'),
 
 -- Jaguadarte
-(90, 'Jaguadarte aparece para você'),
+(90, 'Jaguadarte aparece para você, sente medo?'),
 
--- Absolem dialogue
-(90, 'Quem é você?'),
-(91, 'Você acredita no destino?'),
-(92, 'Você entende a importância do tempo?'),
-(93, 'A sabedoria vem com a idade?'),
-(94, 'Você está pronta para as mudanças que virão?'),
-(95, 'Você acredita em reencarnação?'),
-(96, 'Você sabe o que é real e o que é ilusão?'),
-(97, 'Você está ciente das consequências de suas ações?'),
-(98, 'O conhecimento é um fardo ou uma bênção?'),
-(99, 'Você está satisfeita com suas escolhas até agora?'),
+-- Absolem
+(91, 'Quem é você?'),
+(92, 'Acredita no destino?'),
+(93, 'Entende a importância do tempo?'),
+(94, 'Sabedoria vem com a idade?'),
+(95, 'Está pronta para as mudanças?'),
+(96, 'Reencarnação é real?'),
+(97, 'Real ou ilusão?'),
+(98, 'Ciente das consequências?'),
+(99, 'Conhecimento é um fardo?'),
+(100, 'Satisfeita com suas escolhas?'),
 
 -- Rainha Branca
-(100, 'Você acredita que a paz pode ser alcançada sem sacrifícios?'),
-(101, 'Se pudesse escolher entre justiça e misericórdia, o que escolheria?'),
-(102, 'Você acha que a bondade pode ser uma fraqueza?'),
-(103, 'O que você faria se enfrentasse uma escolha entre o bem maior e a felicidade de poucos?'),
-(104, 'Você acredita que todos merecem uma segunda chance?'),
-(105, 'Se pudesse mudar o passado para corrigir um erro, o faria?'),
-(106, 'O que você acha mais importante: a verdade ou a harmonia?'),
-(107, 'Você acredita que a gentileza pode vencer qualquer adversidade?'),
-(108, 'O que faria se tivesse que escolher entre seu dever e sua felicidade?'),
-(109, 'Você acha que o mundo pode ser mudado por uma pessoa?'),
+(101, 'Paz sem sacrifícios?'),
+(102, 'Justiça ou misericórdia?'),
+(103, 'Bondade é fraqueza?'),
+(104, 'Bem maior ou felicidade de poucos?'),
+(105, 'Todos merecem segunda chance?'),
+(106, 'Mudaria o passado?'),
+(107, 'Verdade ou harmonia?'),
+(108, 'Gentileza vence adversidades?'),
+(109, 'Dever ou felicidade?'),
+(110, 'Uma pessoa pode mudar o mundo?'),
 
 -- Valete de Copas
-(110, 'Você acredita que a justiça é cega?'),
-(111, 'Se pudesse escolher, preferiria ser temido ou respeitado?'),
-(112, 'Você acha que a lei é justa para todos?'),
-(113, 'O que você faria se soubesse que alguém está quebrando a lei?'),
-(114, 'Você acredita que a punição é a melhor forma de ensinar?'),
-(115, 'Se pudesse escolher, preferiria ser juiz ou executor?'),
-(116, 'Você acha que a lei é absoluta ou pode ser interpretada?'),
-(117, 'O que você faria se soubesse que a lei é injusta?'),
-(118, 'Você acredita que a justiça pode ser cega e surda?'),
-(119, 'Se pudesse mudar uma lei, o faria?'),
+(111, 'Justiça é cega?'),
+(112, 'Temido ou respeitado?'),
+(113, 'Lei é justa para todos?'),
+(114, 'Punição ensina?'),
+(115, 'Juiz ou executor?'),
+(116, 'Lei é absoluta?'),
+(117, 'O que faria com uma lei injusta?'),
+(118, 'Justiça pode ser cega e surda?'),
+(119, 'Mudaria uma lei?');
 
--- Tutorial
-(1000, 'Você avista um coelho muito estranho e apressado, com um relógio de bolso na mão e um colete'),
-(1001, 'Ao perserguir o coelho, você cai em um buraco que parece uma casa de gigante. Em sua frente, há um bolinho escrito "Coma-me"')
-(1002, 'Você cresceu de tamanho demais, porém, há um líquido na mesa escrito "Beba-me"')
-(1003, 'Você encontrou uma porta no seu tamanho, mas está trancada. Há uma chave em cima da mesa')
-(1004, 'Você se depara com um mundo diferente lá fora.'),
-(1005, 'Um rapaz estranho com um chapéu muito grande aparece e fala com você.'),
-(1006, 'Oi, eu sou o Chapeleiro Maluco. Bem vinda ao País das Maravilhas'),
-(1007, 'Você acredita que é mais seguro desaparecer ou enfrentar seus medos?'),
-(1008, 'Querida Alice, tome cuidado nesse mundo, há seres muito crueis aqui'),
-(1009, 'Um vazamento de água começou a encher rapidamente o local. O que você fará?'),
-
--- Inicios
-(1010, 'Você retorna ao País das Maravilhas.')
-(1011, 'Você acorda em um lugar estranho, com um coelho branco te apressando para segui-lo.'),
-(1012, 'Você encontra um espelho que reflete uma versão mais jovem de você. Ela te chama para o outro lado.')
-(1013, 'Você encontra um buraco no chão e decide cair nele.')
-(1014, 'Você fica com febre e começa a perder sua conciencia.'),
 
 
 INSERT INTO Card (id_card, id_plot, id_dialogue, answer_left, answer_right)
@@ -459,21 +452,61 @@ INSERT INTO Card (id_card, id_plot, id_dialogue, answer_left, answer_right)
 (117, 11, 117, 'Sim', 'Não'), -- ASW1: queen 0, popularity 10, life 0, size 0; ASW2: queen 0, popularity -10, life 0, size 0;
 (118, 11, 118, 'Sim', 'Não'), -- ASW1: queen 0, popularity 10, life 0, size 0; ASW2: queen 0, popularity -10, life 0, size 0;
 (119, 11, 119, 'Sim', 'Não'), -- ASW1: queen 0, popularity 10, life 0, size 0; ASW2: queen 0, popularity -10, life 0, size 0;
-(1000, 1000, 1000, 'Seguir ele', 'Correr atrás'), -- ASW1: queen 0, popularity 0, life 0, size 0; ASW2: queen 0, popularity 0, life 0, size 0;
-(1001, 1001, 1001, 'Comer', 'Não Comer'), -- ASW1: queen 0, popularity 0, life -10, size 10; ASW2: queen 0, popularity 0, life 0, size 0;
-(1002, 1002, 1002, 'Beber', 'Não Beber'), -- ASW1: queen 0, popularity 0, life -10, size -10; ASW2: queen 0, popularity 0, life 10, size 0;
-(1003, 1003, 1003, 'Abrir porta', 'Não abrir'), -- ASW1: queen 0, popularity 0, life 10, size 0; ASW2: queen 0, popularity 0, life 10, size 0;
-(1004, 1004, 1004, 'Que lindo', 'Parece falso'), -- ASW1: queen -10, popularity 10, life -10, size 0; ASW2: queen 0, popularity -10, life 10, size 0;
-(1005, 1005, 1005, 'Quem é você?', 'Fica longe'), -- ASW1: queen -10, popularity 10, life -10, size 0; ASW2: queen 10, popularity -10, life 10, size 0;
-(1006, 1006, 1006, 'Olá', 'Não falo com estranhos'), -- ASW1: queen 0, popularity 10, life -10, size 0; ASW2: queen 0, popularity -10, life 10, size 0;
-(1007, 1007, 1007, 'Desaparecer', 'Engrentar'), -- ASW1: queen 10, popularity -10, life -10, size 0; ASW2: queen -10, popularity 10, life 10, size 0;
-(1008, 1008, 1008, 'Eu sou o perigo', 'Obrigada pela dica'), -- ASW1: queen 10, popularity -10, life -10, size 0; ASW2: queen 0, popularity 10, life 10, size 0;
-(1009, 1009, 1009, 'Sair pela porta', 'Ficar'), -- ASW1: queen 0, popularity 0, life 10, size -10; ASW2: queen 0, popularity 0, life -10, size 0;
-(1010, 1010, 1010, 'Como?', 'O que?'), -- ASW1: queen 10, popularity 10, life 10, size 10; ASW2: queen 10, popularity 10, life 10, size 10;
-(1011, 1011, 1011, 'Seguir o coelho', 'Ficar'), -- ASW1: queen 0, popularity 0, life 0, size 0; ASW2: queen 0, popularity 0, life 0, size 0;
-(1012, 1012, 1012, 'Entrar no Espelho', 'Ficar'), -- ASW1: queen 0, popularity 0, life 0, size 0; ASW2: queen 0, popularity 0, life 100, size 0;
-(1013, 1013, 1013, 'Pular dentro', 'Sair'), -- ASW1: queen 0, popularity 0, life -10, size 0; ASW2: queen 0, popularity 0, life 100, size 0;
-(1014, 1014, 1014, 'O que?', 'Onde estou'), -- ASW1: queen -10, popularity -10, life -10, size -10; ASW2: queen -10, popularity -10, life -10, size -10;
+-- Floresta Encantada
+(120, 'A floresta parece viva, com árvores cujos galhos se movem sutilmente. Há uma energia mágica no ar.'), 
+(121, 'Sombras misteriosas se movem entre as árvores, e o silêncio é quebrado apenas pelo sussurro do vento.'),
+(122, 'Luzes fracas brilham entre as folhas, como se pequenas criaturas estivessem observando.'),
+
+-- Salão das Portas
+(125, 'Você se encontra em um vasto salão com várias portas de diferentes tamanhos. Cada uma parece levar a um destino incerto.'),
+(126, 'Algumas portas são pequenas demais para você passar, enquanto outras são grandes demais para abrir.'),
+(127, 'Há um silêncio estranho no ar, como se cada porta guardasse um segredo.'),
+
+-- Jardim das Flores Falantes
+(130, 'O jardim está repleto de flores coloridas, mas estas flores parecem estar conversando entre si.'),
+(131, 'As flores viram seus rostos em sua direção, como se estivessem curiosas sobre sua presença.'),
+(132, 'O aroma das flores é forte e inebriante, enquanto seus sussurros preenchem o ar ao seu redor.'),
+
+-- Jogo de Croquet da Rainha
+(135, 'No campo de croquet, flamingos são usados como tacos e ouriços como bolas. A Rainha observa tudo de perto.'),
+(136, 'A Rainha de Copas grita ordens enquanto você tenta jogar com as regras constantemente mudando.'),
+(137, 'A atmosfera é tensa, com todos os jogadores tentando agradar a Rainha para evitar sua ira.'),
+
+-- Mesa de Chá do Chapeleiro Maluco
+(140, 'Você se senta à mesa com o Chapeleiro e seus amigos, onde o chá nunca parece acabar.'),
+(141, 'Xícaras de chá, bolos e pratos sujos cobrem toda a mesa, enquanto a conversa é um caos incompreensível.'),
+(142, 'O tempo parece ter parado, com todos presos em um chá eterno e sem sentido.'),
+
+-- Tribunal da Rainha de Copas
+(145, 'No tribunal da Rainha de Copas, as acusações são feitas rapidamente, e as punições são ainda mais rápidas.'),
+(146, 'As testemunhas parecem aterrorizadas, e a Rainha exige obediência absoluta de todos presentes.'),
+(147, 'O julgamento parece uma farsa, com a decisão da Rainha já tomada antes mesmo de ouvir o caso.'),
+
+-- Corrida Maluca
+(150, 'A corrida começou, mas ninguém sabe onde está a linha de chegada. Todos correm em direções diferentes.'),
+(151, 'A corrida não segue nenhuma lógica, e os participantes parecem correr por puro caos.'),
+(152, 'Você se vê no meio de uma multidão, correndo sem saber por quê, apenas sentindo o vento no rosto.'),
+
+-- País das Maravilhas
+(155, 'O País das Maravilhas é uma mistura caótica de cores vibrantes e paisagens impossíveis.'),
+(156, 'Nada parece fazer sentido aqui, e tudo parece estar em constante mudança, como se o mundo estivesse vivo.'),
+(157, 'Você sente que o próprio chão sob seus pés poderia mudar a qualquer momento.'),
+
+-- Espelho Mágico
+(160, 'O espelho à sua frente reflete uma imagem de você, mas algo parece estar errado com o reflexo.'),
+(161, 'O reflexo parece ter vida própria, como se estivesse te observando de volta.'),
+(162, 'Você toca o espelho e ele parece ceder, como se fosse possível atravessá-lo.'),
+
+-- Enchente
+(165, 'A água começa a subir rapidamente ao seu redor, cobrindo o chão e subindo pelas paredes.'),
+(166, 'Tudo ao seu redor está sendo engolido pela água, e você sente a urgência de escapar.'),
+(167, 'A enchente não mostra sinais de parar, e você se vê sendo levado pela correnteza.'),
+
+-- Buraco no Chão
+(170, 'Você olha para baixo e vê um buraco profundo, escuro e aparentemente sem fim.'),
+(171, 'O buraco parece te chamar, e ao se aproximar, você sente o impulso de saltar.'),
+(172, 'A sensação de queda é constante, como se o fundo nunca fosse realmente chegar.'),
+
 
 INSERT INTO Item (name, effect, condition, dropped) VALUES 
 ('Bolo do Crescimento', 'Size 10', NULL, FALSE),
