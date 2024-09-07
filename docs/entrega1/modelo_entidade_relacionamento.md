@@ -3,7 +3,7 @@
 ## **Introdução**
 O **Modelo Entidade-Relacionamento (MER)** é uma ferramenta essencial na modelagem de dados, proporcionando uma representação gráfica clara dos elementos principais de um sistema e suas interações. Utilizado amplamente no desenvolvimento de sistemas e bancos de dados, o MER ajuda a identificar e organizar os dados de maneira eficiente e coerente.
 
-No contexto deste projeto, o MER é composto por **entidades** que representam os principais objetos do domínio, como personagens jogadores, aventuras e cartas. Cada entidade possui **atributos** que descrevem suas características únicas. Além disso, os **relacionamentos** estabelecem as interações entre essas entidades, indicando como elas se conectam dentro do sistema.
+No contexto deste projeto, o MER é composto por **entidades** que representam os principais objetos do domínio, como aventuras, cartas e recursos. Cada entidade possui **atributos** que descrevem suas características únicas. Além disso, os **relacionamentos** estabelecem as interações entre essas entidades, indicando como elas se conectam dentro do sistema.
 
 ## **Descrição Conceitual**
 A descrição conceitual é uma etapa crucial na modelagem de dados, pois envolve a abstração dos elementos relevantes de um domínio, seja ele observado ou imaginado. Este modelo captura a essência do sistema sem se preocupar com os detalhes de implementação específicos de um banco de dados, permitindo uma visão clara e organizada de como as informações serão estruturadas.
@@ -15,101 +15,109 @@ O MER opera em um nível de abstração elevado, focando na forma como os dados 
 <details>
 <summary><strong>Entidades e Atributos</strong></summary>
 
-### **PC (Personagem Jogador)**
-- **id_pc (PK)**: Identificador único do personagem jogador.
-- **name**: Nome do personagem jogador.
-- **start**: Início da aventura do personagem.
-- **age**: Idade do personagem jogador.
-
 ### **Adventure (Aventura)**
-- **id_adventure (PK)**: Identificador único da aventura.
-- **id_pc (FK)**: Referência ao personagem jogador que participa da aventura.
-- **id_end (FK)**: Referência ao fim da aventura.
+- **adventure_id (PK)**: Identificador único da aventura.
 - **queen**: Pontuação com a Rainha.
-- **life**: Vida do personagem durante a aventura.
-- **popularity**: Popularidade do personagem.
+- **popularity**: Popularidade do personagem durante a aventura.
+- **health**: Vida do personagem.
 - **size**: Tamanho do personagem.
 
-### **End (Fim da Aventura)**
-- **id_end (PK)**: Identificador único do fim da aventura.
-- **cause**: Causa do fim da aventura.
-- **title**: Título do fim da aventura.
-
 ### **Deck (Baralho)**
-- **id_deck (PK)**: Identificador único do baralho.
+- **deck_id (PK)**: Identificador único do baralho.
+- **start_card_id (FK)**: Identificador da primeira carta do baralho.
+- **end_card_id (FK)**: Identificador da última carta do baralho.
 
-### **Deck_Normal (Especialização de Deck)**
-- **id_deck (PK, FK)**: Identificador único do baralho normal.
-- **completed**: Status de completude do baralho.
+### **End (Fim da Aventura)**
+- **end_id (PK)**: Identificador único do fim da aventura.
+- **title**: Título do fim.
+- **description**: Descrição do fim da aventura.
 
-### **Deck_Event (Especialização de Deck)**
-- **id_deck (PK, FK)**: Identificador único do baralho de eventos.
-- **sequence_order**: Ordem das cartas no evento.
-- **attempts**: Número de tentativas permitidas.
+### **Normal (Baralho Normal)**
+- **deck_id (PK, FK)**: Referência ao identificador do baralho.
+- **status**: Indica se o baralho é ativo ou não.
+- **start_card_id (FK)**: Identificador da primeira carta do baralho normal.
+- **end_card_id (FK)**: Identificador da última carta do baralho normal.
+
+### **Event (Evento)**
+- **deck_id (PK, FK)**: Referência ao identificador do baralho de eventos.
+- **attempt**: Número de tentativas para completar o evento.
+- **start_card_id (FK)**: Identificador da primeira carta do evento.
+- **end_card_id (FK)**: Identificador da última carta do evento.
 
 ### **Card (Carta)**
-- **id_card (PK)**: Identificador único da carta.
-- **id_npc (FK)**: Referência ao NPC associado à carta.
-- **id_dialogue (FK)**: Referência ao diálogo associado à carta.
+- **card_id (PK)**: Identificador único da carta.
+- **scene_id (FK)**: Identificador da cena.
+- **dialogue_id (FK)**: Identificador do diálogo.
+- **left_next_card (FK)**: Próxima carta à esquerda.
+- **right_next_card (FK)**: Próxima carta à direita.
+- **left_resource (FK)**: Recurso associado à esquerda.
+- **right_resource (FK)**: Recurso associado à direita.
+- **item_id (FK)**: Identificador do item associado.
 
-### **NPC (Personagem Não-Jogador)**
-- **id_npc (PK)**: Identificador único do NPC.
-- **name**: Nome do NPC.
-- **image**: Imagem do NPC.
+### **Scene (Cena)**
+- **scene_id (PK)**: Identificador único da cena.
+- **image**: Imagem associada à cena.
+- **name**: Nome da cena.
 
 ### **Dialogue (Diálogo)**
-- **id_dialogue (PK)**: Identificador único do diálogo.
-- **dialogue**: Texto do diálogo.
+- **dialogue_id (PK)**: Identificador único do diálogo.
+- **description**: Descrição do diálogo.
 
-### **Item**
-- **id_item (PK)**: Identificador único do item.
+### **Item (Item)**
+- **item_id (PK)**: Identificador único do item.
 - **name**: Nome do item.
-- **effect**: Efeito do item.
-- **condition**: Condição de uso do item.
-- **dropped**: Indica se o item foi dropado.
+- **icon**: Caminho para o ícone do item.
+- **status**: Indica se o item está ativo.
 
 ### **Resource (Recurso)**
-- **id_resource (PK)**: Identificador único do recurso.
-- **queen**: Pontos com a Rainha.
-- **life**: Vida do recurso.
+- **resource_id (PK)**: Identificador único do recurso.
+- **queen**: Pontuação com a Rainha.
 - **popularity**: Popularidade do recurso.
+- **health**: Vida do recurso.
 - **size**: Tamanho do recurso.
 
 </details>
+
+---
 
 ## **Relacionamentos**
 
 <details>
 <summary><strong>Relacionamentos</strong></summary>
 
-### **PC Participa em Adventure**
-- **PC (1,N)** participa de **Adventure (1,N)**
+### **Adventure Controla Deck**
+- **Adventure (1,1)** controla **Deck (1,N)**
+    - Um adventure pode controlar vários decks, mas cada deck pertence a um único adventure.
 
 ### **Adventure Termina em End**
-- **Adventure (N,1)** termina em **End (1,1)**
-
-### **Adventure Usa Deck**
-- **Adventure (N,1)** usa **Deck (1,1)**
+- **Adventure (1,1)** termina em **End (0,1)**
+    - Um adventure pode ou não ter um fim, e cada fim pertence a um único adventure.
 
 ### **Deck Contém Card**
-- **Deck (1,N)** contém **Card (1,1)**
+- **Deck (1,N)** contém **Card (1,N)**
+    - Um deck contém várias cartas, e cada carta pode pertencer a vários decks.
 
-### **Card Associa com NPC**
-- **Card (1,N)** associa com **NPC (0,1)**
+### **Card Participa em Scene**
+- **Card (1,N)** participa de **Scene (1,1)**
+    - Cada carta deve fazer parte de uma cena, mas várias cartas podem compartilhar a mesma cena.
 
-### **Card Gera Dialogue**
-- **Card (0,1)** gera **Dialogue (0,1)**
+### **Card Participa em Dialogue**
+- **Card (1,N)** participa de **Dialogue (1,1)**
+    - Uma carta pode conter um diálogo, mas várias cartas podem compartilhar o mesmo diálogo.
 
-### **Card Gera Item**
-- **Card (0,1)** gera **Item (0,1)**
+### **Card Droppa Item**
+- **Card (0,1)** droppa **Item (0,1)**
+    - Uma carta pode, opcionalmente, droppar um item.
 
-### **Card Afeta Resource**
-- **Card (0,1)** afeta **Resource (0,1)**
+### **Card Gera Resource**
+- **Card (0,1)** gera **Resource (1,1)**
+    - Uma carta pode gerar um recurso como resultado.
+
+### **Normal e Event São Tipos de Deck**
+- **Normal (1,1)** e **Event (1,1)** são especializações do relacionamento com **Deck**
+    - Um deck pode ser normal ou de evento, mas nunca ambos ao mesmo tempo.
 
 </details>
-
-## **Referência**
-**Elmasri, R., & Navathe, S. B.** (2016). *Fundamentals of Database Systems* (7th ed.). Pearson.
 
 ## **Histórico de Versão**
 | Data      | Versão | Descrição                                              | Autor                                        |
