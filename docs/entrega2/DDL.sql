@@ -69,7 +69,9 @@ CREATE TABLE Scene (
 -- Criação da tabela Dialogue
 CREATE TABLE Dialogue (
     dialogue_id SERIAL PRIMARY KEY,
-    description VARCHAR(300)
+    description VARCHAR(300), 
+    answer_left VARCHAR(300),
+    answer_right VARCHAR(300)
 );
 
 -- Criação da tabela Item
