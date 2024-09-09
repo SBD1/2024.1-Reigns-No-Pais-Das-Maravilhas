@@ -17,10 +17,11 @@
 BEGIN TRANSACTION;
 
 -- Criação da tabela End
-CREATE TABLE End (
+CREATE TABLE Ending (
     end_id SERIAL PRIMARY KEY,
     title VARCHAR(150) NOT NULL,
-    description VARCHAR(300)
+    description VARCHAR(300), 
+    image BYTEA
 );
 
 -- Criação da tabela Adventure
@@ -31,7 +32,7 @@ CREATE TABLE Adventure (
     health INT DEFAULT 50,
     size INT DEFAULT 50,
     end_id INT,
-    FOREIGN KEY (end_id) REFERENCES End(end_id)
+    FOREIGN KEY (end_id) REFERENCES Ending(end_id)
 );
 
 -- Criação da tabela Deck

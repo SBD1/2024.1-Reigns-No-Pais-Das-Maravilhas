@@ -1,27 +1,58 @@
 version: '3.8'
+
 services:
-  postgres:
-    image: postgres:latest
-    container_name: postgres
+  database:
+    image: postgres:13
+    container_name: alice_postgres
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydb
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  app:
+    build: ./game/backend
+    container_name: alice_app
+    environment:
+      DB_HOST: database
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+    volumes:
+      - ./game/backend:/usr/src/app
+    networks:
+      - backend
+    command: bash -c "npm install && node src/app.js"
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - "8081:80"
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
     depends_on:
-      - postgres
+      - database
+    networks:
+      - backend
 
 volumes:
-  postgres_data:
+  postgres-data:
+  pgadmin-data:
+
+networks:
+  backend:

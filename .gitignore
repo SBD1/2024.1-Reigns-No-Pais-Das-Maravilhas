@@ -1,0 +1,38 @@
+# Ignore node_modules, mas mantenha o .env
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+.pnpm-debug.log
+
+# Logs
+logs
+*.log
+
+# Pastas de build temporárias
+dist/
+build/
+
+# Imagens ou arquivos de cache temporários
+*.tmp
+*.temp
+*.cache
+
+# Pastas e arquivos Docker (se estiverem gerados localmente)
+docker-compose.override.yml
+.Dockerfile
+.dockerignore
+
+# Ignore arquivos de banco de dados e seed locais
+postgres-data/
+*.sqlite
+
+# Outros
+.DS_Store
+
+# Ignorar arquivos .env.local, mas manter o .env
+.env.local
+.env.*
+
+# Mantenha o .env no repositório
+!.env
