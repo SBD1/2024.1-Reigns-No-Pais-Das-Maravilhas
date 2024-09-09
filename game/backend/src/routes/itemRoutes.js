@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   console.log('GET /api/items');
   try {
     const query = `
-      SELECT i.item_id AS id, i.name, i.resource 
+      SELECT i.item_id AS id, i.name, i.icon, i.status
       FROM item i 
       WHERE i.status = TRUE
     `;
