@@ -15,6 +15,8 @@ nav:
     - Modelo Entidade-Relacionamento: entrega1/modelo_entidade_relacionamento.md
     - Diagrama Entidade-Relacionamento: entrega1/diagrama_entidade_relacionamento.md
     - Modelo Relacional: entrega1/modelo_relacional.md
+  - Entrega 2: entrega2/entrega2.md
+  - Entrega 3: entrega3/entrega3.md
 
 theme:
   name: material
